@@ -28,9 +28,12 @@ tmdb_movie = Movie()
 df2 = pd.read_csv("tmdb_5000_credits.csv")
 knn1 = pd.read_csv("tmdb_5000_movies.csv")
 
-# Load NLP vectorizer and model
-vectorizer = pkl.load(open('vectorizerer.pkl', 'rb'))
-clt = pkl.load(open('nlp_model.pkl', 'rb'))
+# ✅ Fixed: Load NLP vectorizer and model in binary mode
+with open('vectorizerer.pkl', 'rb') as f:
+    vectorizer = pkl.load(f)
+
+with open('nlp_model.pkl', 'rb') as f:
+    clt = pkl.load(f)
 
 # URLs for get_swipe()
 url = [
@@ -38,8 +41,6 @@ url = [
     "http://api.themoviedb.org/3/discover/movie?api_key=2c5341f7625493017933e27e81b1425e&primary_release_year=2014&adult=false",
     "https://api.themoviedb.org/3/movie/popular?api_key=2c5341f7625493017933e27e81b1425e&language=en-US&page=1&adult=false",
 ]
-
-# Helper functions
 
 def get_news():
     response = requests.get("https://www.imdb.com/news/top/?ref_=hm_nw_sm")
@@ -117,8 +118,6 @@ def getswipe():
 @app.route('/getnews')
 def getnewsdata():
     return jsonify(get_news())
-
-# Recommendation logic
 
 def get_recommendations(title, user_id):
     movies_data = pd.read_csv('Main_data.csv')

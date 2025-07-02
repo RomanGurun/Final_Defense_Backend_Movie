@@ -1,0 +1,77 @@
+2025-07-02 12:37:51,335 - WARNING -  * Debugger is active!
+2025-07-02 12:37:51,350 - INFO -  * Debugger PIN: 755-959-298
+2025-07-02 12:37:58,512 - INFO -  * Detected change in '/Users/romangurung/Downloads/recommendation_backend-main/app.py', reloading
+2025-07-02 12:38:03,777 - WARNING -  * Debugger is active!
+2025-07-02 12:38:03,789 - INFO -  * Debugger PIN: 755-959-298
+2025-07-02 12:39:22,752 - INFO -  * Detected change in '/Users/romangurung/Downloads/recommendation_backend-main/app.py', reloading
+2025-07-02 12:39:25,348 - WARNING -  * Debugger is active!
+2025-07-02 12:39:25,363 - INFO -  * Debugger PIN: 755-959-298
+2025-07-02 12:40:25,676 - INFO - 127.0.0.1 - - [02/Jul/2025 12:40:25] "GET /getswipe HTTP/1.1" 200 -
+2025-07-02 12:40:28,556 - INFO - 127.0.0.1 - - [02/Jul/2025 12:40:28] "GET /getmovie/Jurassic%20World%20Dominion HTTP/1.1" 200 -
+2025-07-02 12:40:29,315 - INFO - 127.0.0.1 - - [02/Jul/2025 12:40:29] "GET /getdirector/Jurassic%20World%20Dominion HTTP/1.1" 200 -
+2025-07-02 12:40:29,857 - INFO - 127.0.0.1 - - [02/Jul/2025 12:40:29] "GET /getmovie/Jurassic%20World%20Dominion HTTP/1.1" 200 -
+2025-07-02 12:40:35,645 - INFO - 127.0.0.1 - - [02/Jul/2025 12:40:35] "GET /getreview/Jurassic%20World%20Dominion HTTP/1.1" 200 -
+2025-07-02 12:40:40,316 - WARNING - Content-based: Movie 'Jurassic World Dominion' not found.
+2025-07-02 12:40:40,425 - WARNING - Collaborative filtering: User '507086' not found.
+2025-07-02 12:40:40,428 - WARNING - No recommendations for movie 'Jurassic World Dominion', user '507086'.
+2025-07-02 12:40:40,429 - INFO - 127.0.0.1 - - [02/Jul/2025 12:40:40] "GET /send/Jurassic%20World%20Dominion/507086 HTTP/1.1" 404 -
+2025-07-02 12:42:59,757 - INFO - 127.0.0.1 - - [02/Jul/2025 12:42:59] "GET /getmovie/M3GAN HTTP/1.1" 200 -
+2025-07-02 12:43:00,425 - INFO - 127.0.0.1 - - [02/Jul/2025 12:43:00] "GET /getdirector/M3GAN HTTP/1.1" 200 -
+2025-07-02 12:43:00,998 - INFO - 127.0.0.1 - - [02/Jul/2025 12:43:00] "GET /getmovie/M3GAN HTTP/1.1" 200 -
+2025-07-02 12:43:01,097 - WARNING - Content-based: Movie 'M3GAN' not found.
+2025-07-02 12:43:01,258 - WARNING - Collaborative filtering: User '536554' not found.
+2025-07-02 12:43:01,260 - WARNING - No recommendations for movie 'M3GAN', user '536554'.
+2025-07-02 12:43:01,260 - INFO - 127.0.0.1 - - [02/Jul/2025 12:43:01] "GET /send/M3GAN/536554 HTTP/1.1" 404 -
+2025-07-02 12:45:42,966 - WARNING - Collaborative filtering: User 'H8MuqLVgoAWvi7d2bnCtQVkgSNz1' not found.
+2025-07-02 12:45:52,553 - INFO - 127.0.0.1 - - [02/Jul/2025 12:45:52] "GET /send/Avatar/H8MuqLVgoAWvi7d2bnCtQVkgSNz1 HTTP/1.1" 200 -
+2025-07-02 12:45:54,175 - INFO - 127.0.0.1 - - [02/Jul/2025 12:45:54] "GET /score/Avatar/Mystery%20Men/ HTTP/1.1" 200 -
+2025-07-02 12:45:54,188 - INFO - 127.0.0.1 - - [02/Jul/2025 12:45:54] "GET /score/Avatar/R.I.P.D./ HTTP/1.1" 200 -
+2025-07-02 12:45:54,208 - INFO - 127.0.0.1 - - [02/Jul/2025 12:45:54] "GET /score/Avatar/Last%20Action%20Hero/ HTTP/1.1" 200 -
+2025-07-02 12:45:54,208 - INFO - 127.0.0.1 - - [02/Jul/2025 12:45:54] "GET /score/Avatar/Hereafter/ HTTP/1.1" 200 -
+2025-07-02 12:45:54,209 - INFO - 127.0.0.1 - - [02/Jul/2025 12:45:54] "GET /score/Avatar/Now%20You%20See%20Me%202/ HTTP/1.1" 200 -
+2025-07-02 12:48:05,707 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:05] "GET /getmovie/M3GAN HTTP/1.1" 200 -
+2025-07-02 12:48:06,373 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:06] "GET /getdirector/M3GAN HTTP/1.1" 200 -
+2025-07-02 12:48:06,964 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:06] "GET /getmovie/M3GAN HTTP/1.1" 200 -
+2025-07-02 12:48:07,258 - WARNING - Content-based: Movie 'M3GAN' not found.
+2025-07-02 12:48:07,338 - WARNING - Collaborative filtering: User '536554' not found.
+2025-07-02 12:48:07,342 - WARNING - No recommendations for movie 'M3GAN', user '536554'.
+2025-07-02 12:48:07,342 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:07] "GET /send/M3GAN/536554 HTTP/1.1" 404 -
+2025-07-02 12:48:15,347 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:15] "GET /getmovie/Black%20Panther:%20Wakanda%20Forever HTTP/1.1" 200 -
+2025-07-02 12:48:16,155 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:16] "GET /getdirector/Black%20Panther:%20Wakanda%20Forever HTTP/1.1" 200 -
+2025-07-02 12:48:16,572 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:16] "GET /getmovie/Black%20Panther:%20Wakanda%20Forever HTTP/1.1" 200 -
+2025-07-02 12:48:17,454 - WARNING - Content-based: Movie 'Black Panther: Wakanda Forever' not found.
+2025-07-02 12:48:17,539 - WARNING - Collaborative filtering: User '505642' not found.
+2025-07-02 12:48:17,542 - WARNING - No recommendations for movie 'Black Panther: Wakanda Forever', user '505642'.
+2025-07-02 12:48:17,546 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:17] "GET /send/Black%20Panther:%20Wakanda%20Forever/505642 HTTP/1.1" 404 -
+2025-07-02 12:48:21,988 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:21] "GET /getreview/Black%20Panther:%20Wakanda%20Forever HTTP/1.1" 200 -
+2025-07-02 12:48:25,134 - WARNING - Content-based: Movie 'Black Panther: Wakanda Forever' not found.
+2025-07-02 12:48:25,189 - WARNING - Collaborative filtering: User '505642' not found.
+2025-07-02 12:48:25,192 - WARNING - No recommendations for movie 'Black Panther: Wakanda Forever', user '505642'.
+2025-07-02 12:48:25,192 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:25] "GET /send/Black%20Panther:%20Wakanda%20Forever/505642 HTTP/1.1" 404 -
+2025-07-02 12:48:43,781 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:43] "GET /getmovie/RARE　ーレアー　人間であったはずの肉塊　総集編② HTTP/1.1" 200 -
+2025-07-02 12:48:44,562 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:44] "GET /getdirector/RARE　ーレアー　人間であったはずの肉塊　総集編② HTTP/1.1" 200 -
+2025-07-02 12:48:45,043 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:45] "GET /getmovie/RARE　ーレアー　人間であったはずの肉塊　総集編② HTTP/1.1" 200 -
+2025-07-02 12:48:47,275 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:47] "GET /getreview/RARE　ーレアー　人間であったはずの肉塊　総集編② HTTP/1.1" 200 -
+2025-07-02 12:48:51,824 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:51] "GET /getdirector/RARE　ーレアー　人間であったはずの肉塊　総集編② HTTP/1.1" 200 -
+2025-07-02 12:48:52,354 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:52] "GET /getmovie/RARE　ーレアー　人間であったはずの肉塊　総集編② HTTP/1.1" 200 -
+2025-07-02 12:48:56,890 - INFO - 127.0.0.1 - - [02/Jul/2025 12:48:56] "GET /getreview/RARE　ーレアー　人間であったはずの肉塊　総集編② HTTP/1.1" 200 -
+2025-07-02 12:50:37,534 - INFO - 127.0.0.1 - - [02/Jul/2025 12:50:37] "GET /getswipe HTTP/1.1" 200 -
+2025-07-02 12:50:37,671 - INFO - 127.0.0.1 - - [02/Jul/2025 12:50:37] "GET /getmovie/M3GAN HTTP/1.1" 200 -
+2025-07-02 12:50:38,448 - INFO - 127.0.0.1 - - [02/Jul/2025 12:50:38] "GET /getdirector/M3GAN HTTP/1.1" 200 -
+2025-07-02 12:50:39,017 - INFO - 127.0.0.1 - - [02/Jul/2025 12:50:39] "GET /getmovie/M3GAN HTTP/1.1" 200 -
+2025-07-02 12:50:39,175 - WARNING - Content-based: Movie 'M3GAN' not found.
+2025-07-02 12:50:40,352 - WARNING - Collaborative filtering: User '536554' not found.
+2025-07-02 12:50:40,353 - WARNING - No recommendations for movie 'M3GAN', user '536554'.
+2025-07-02 12:50:40,354 - INFO - 127.0.0.1 - - [02/Jul/2025 12:50:40] "GET /send/M3GAN/536554 HTTP/1.1" 404 -
+2025-07-02 13:06:50,390 - INFO -  * Detected change in '/Users/romangurung/Downloads/recommendation_backend-main/app.py', reloading
+2025-07-02 13:06:52,866 - WARNING -  * Debugger is active!
+2025-07-02 13:06:52,886 - INFO -  * Debugger PIN: 755-959-298
+2025-07-02 13:06:53,935 - INFO -  * Detected change in '/Users/romangurung/Downloads/recommendation_backend-main/app.py', reloading
+2025-07-02 13:08:35,482 - INFO -  * Running on http://0.0.0.0:5001/ (Press CTRL+C to quit)
+2025-07-02 13:08:35,484 - INFO -  * Restarting with stat
+2025-07-02 13:08:37,107 - WARNING -  * Debugger is active!
+2025-07-02 13:08:37,130 - INFO -  * Debugger PIN: 755-959-298
+2025-07-02 13:09:19,502 - INFO - 127.0.0.1 - - [02/Jul/2025 13:09:19] "GET /getswipe HTTP/1.1" 400 -
+2025-07-02 13:09:26,066 - INFO - 127.0.0.1 - - [02/Jul/2025 13:09:26] "GET /getmovie/Black%20Panther:%20Wakanda%20Forever HTTP/1.1" 400 -
+2025-07-02 13:10:19,293 - INFO -  * Detected change in '/Users/romangurung/Downloads/recommendation_backend-main/app.py', reloading
+2025-07-02 13:10:19,643 - INFO -  * Restarting with stat
