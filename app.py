@@ -1,3 +1,7 @@
+# This is a code to depploy under a render and 
+# a code to run on mac os is under mac_app.py
+# and render.yaml is like requirement.txt for a render 
+
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 import pandas as pd
@@ -14,6 +18,7 @@ from tmdbv3api import TMDb, Movie
 from urllib.parse import unquote
 import csv
 import warnings
+import os
 
 warnings.filterwarnings('ignore')
 
@@ -28,14 +33,13 @@ tmdb_movie = Movie()
 df2 = pd.read_csv("tmdb_5000_credits.csv")
 knn1 = pd.read_csv("tmdb_5000_movies.csv")
 
-# ✅ Fixed: Load NLP vectorizer and model in binary mode
+# Load NLP vectorizer and model in binary mode
 with open('vectorizerer.pkl', 'rb') as f:
     vectorizer = pkl.load(f)
 
 with open('nlp_model.pkl', 'rb') as f:
     clt = pkl.load(f)
 
-# URLs for get_swipe()
 url = [
     "https://api.themoviedb.org/3/discover/movie?api_key=2c5341f7625493017933e27e81b1425e&primary_release_year=2015&adult=false",
     "http://api.themoviedb.org/3/discover/movie?api_key=2c5341f7625493017933e27e81b1425e&primary_release_year=2014&adult=false",
@@ -217,4 +221,5 @@ def findscore(title1, title2):
     return jsonify({'cosineSimilarity': sim, 'euclideanDistance': euc, 'manhattanDistance': man})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=5001)
+    port = int(os.environ.get('PORT', 5001))
+    app.run(host='0.0.0.0', debug=True, port=port)
