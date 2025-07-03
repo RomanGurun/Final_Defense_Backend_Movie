@@ -1,7 +1,3 @@
-# This is a code to depploy under a render and 
-# a code to run on mac os is under mac_app.py
-# and render.yaml is like requirement.txt for a render 
-
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 import pandas as pd
@@ -32,6 +28,16 @@ tmdb_movie = Movie()
 # Load CSVs once at start
 df2 = pd.read_csv("tmdb_5000_credits.csv")
 knn1 = pd.read_csv("tmdb_5000_movies.csv")
+
+# --- Fix for KeyError on 'title_x' ---
+# Check if 'title_x' exists, else fallback to a likely column name such as 'title'
+if "title_x" not in df2.columns:
+    # You can print the columns here to debug:
+    print("df2 columns:", df2.columns.tolist())
+    # Use a fallback column name instead of 'title_x'
+    df2_title_column = "title" if "title" in df2.columns else df2.columns[0]
+else:
+    df2_title_column = "title_x"
 
 # Load NLP vectorizer and model in binary mode
 with open('vectorizerer.pkl', 'rb') as f:
@@ -101,7 +107,7 @@ def index():
 
 @app.route('/getname')
 def getnames():
-    return jsonify(df2["title_x"].tolist())
+    return jsonify(df2[df2_title_column].tolist())
 
 @app.route('/getmovie/<path:movie_name>')
 def getmovie(movie_name):
@@ -221,5 +227,5 @@ def findscore(title1, title2):
     return jsonify({'cosineSimilarity': sim, 'euclideanDistance': euc, 'manhattanDistance': man})
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5001))
+    port = int(os.environ.get('PORT', 5001))  # use Render's PORT or fallback to 5001
     app.run(host='0.0.0.0', debug=True, port=port)
