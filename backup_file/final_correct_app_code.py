@@ -1,6 +1,5 @@
 
 
-
 # final mac localhost runserver probelm solver 
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS

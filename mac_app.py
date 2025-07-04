@@ -1,3 +1,7 @@
+
+
+
+# final mac localhost runserver probelm solver 
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 import pandas as pd
@@ -13,6 +17,7 @@ from sklearn.metrics import pairwise_distances
 from tmdbv3api import TMDb, Movie
 from urllib.parse import unquote
 import csv
+import os
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -28,14 +33,13 @@ tmdb_movie = Movie()
 df2 = pd.read_csv("tmdb_5000_credits.csv")
 knn1 = pd.read_csv("tmdb_5000_movies.csv")
 
-# ✅ Fixed: Load NLP vectorizer and model in binary mode
+# Load NLP vectorizer and model
 with open('vectorizerer.pkl', 'rb') as f:
     vectorizer = pkl.load(f)
 
 with open('nlp_model.pkl', 'rb') as f:
     clt = pkl.load(f)
 
-# URLs for get_swipe()
 url = [
     "https://api.themoviedb.org/3/discover/movie?api_key=2c5341f7625493017933e27e81b1425e&primary_release_year=2015&adult=false",
     "http://api.themoviedb.org/3/discover/movie?api_key=2c5341f7625493017933e27e81b1425e&primary_release_year=2014&adult=false",
@@ -49,7 +53,7 @@ def get_news():
     image = [m['src'] for m in soup.find_all("img", class_="news-article__image")]
     t_data = []
     for i in range(len(data)):
-        t_data.append([image[i], data[i][1:len(data[i]) - 1]])
+        t_data.append([image[i], data[i][1:-1]])
     return t_data
 
 def getdirector(x):
@@ -128,7 +132,7 @@ def get_recommendations(title, user_id):
         if title not in movies_data['title_x'].values:
             new_row = {'title_x': title, 'genres': ''}
             movies_data = pd.concat([movies_data, pd.DataFrame([new_row])], ignore_index=True)
-        movies_data = movies_data.fillna('')
+        movies_data['comb'] = movies_data['comb'].fillna('')
         tfidf = TfidfVectorizer(stop_words='english')
         count_matrix = tfidf.fit_transform(movies_data['comb'])
         idx = movies_data[movies_data['title_x'] == title].index[0]
@@ -204,17 +208,68 @@ def store_movie(movieId, movie1, userId):
 def findscore(title1, title2):
     title1, title2 = unquote(title1), unquote(title2)
     movies_data = pd.read_csv('Main_data.csv')
-    movies_data['comb'] = movies_data['title_x'] + movies_data['genres']
-    idx1, idx2 = movies_data[movies_data['title_x'] == title1].index[0], movies_data[movies_data['title_x'] == title2].index[0]
+
+    # Create 'comb' if missing and fill NaN with empty string
+    if 'comb' not in movies_data.columns:
+        movies_data['comb'] = movies_data['title_x'] + movies_data['genres']
+    movies_data['comb'] = movies_data['comb'].fillna('')
+
+    # Dynamically fetch missing movies and update movies_data and CSV
+    for title in [title1, title2]:
+        if title not in movies_data['title_x'].values:
+            try:
+                result = tmdb_movie.search(title)
+                if not result:
+                    continue
+                movie_id = result[0].id
+                details = requests.get(f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={tmdb.api_key}").json()
+                genre_names = ','.join([g['name'] for g in details.get("genres", [])])
+                new_row = {
+                    'title_x': title,
+                    'genres': genre_names,
+                    'comb': title + genre_names
+                }
+
+                # Append to CSV
+                csv_file_path = 'Main_data.csv'
+                file_exists = os.path.exists(csv_file_path)
+                with open(csv_file_path, 'a', newline='', encoding='utf-8') as file:
+                    writer = csv.DictWriter(file, fieldnames=['title_x', 'genres', 'comb'])
+                    if not file_exists or os.stat(csv_file_path).st_size == 0:
+                        writer.writeheader()
+                    writer.writerow(new_row)
+
+                # Append to DataFrame in memory
+                movies_data = pd.concat([movies_data, pd.DataFrame([new_row])], ignore_index=True)
+                movies_data['comb'] = movies_data['comb'].fillna('')
+
+            except Exception as e:
+                print(f"Error fetching or adding {title}: {e}")
+                return jsonify({'error': f"Could not process movie: {title}"}), 404
+
     count_vec = CountVectorizer()
     count_matrix = count_vec.fit_transform(movies_data['comb'])
     cosine_sim = cosine_similarity(count_matrix, count_matrix)
+
+    try:
+        idx1 = movies_data[movies_data['title_x'] == title1].index[0]
+        idx2 = movies_data[movies_data['title_x'] == title2].index[0]
+    except IndexError:
+        return jsonify({'error': 'One or both titles not found'}), 404
+
     sim = cosine_sim[idx1, idx2]
+
     tfidf = TfidfVectorizer(stop_words='english').fit(movies_data['comb'])
     features = tfidf.transform(movies_data['comb']).toarray()
+
     euc = euclidean_distances([features[idx1]], [features[idx2]])[0][0]
     man = manhattan_distances([features[idx1]], [features[idx2]])[0][0]
-    return jsonify({'cosineSimilarity': sim, 'euclideanDistance': euc, 'manhattanDistance': man})
+
+    return jsonify({
+        'cosineSimilarity': round(sim, 4),
+        'euclideanDistance': round(euc, 4),
+        'manhattanDistance': round(man, 4)
+    })
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=5001)

@@ -1,7 +1,5 @@
 
-
-
-# final mac localhost runserver probelm solver 
+# final render runserver probelm solver 
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 import pandas as pd
@@ -270,6 +268,8 @@ def findscore(title1, title2):
         'euclideanDistance': round(euc, 4),
         'manhattanDistance': round(man, 4)
     })
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=5001)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+
+
